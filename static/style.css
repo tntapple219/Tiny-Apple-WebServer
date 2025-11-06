@@ -1,0 +1,234 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-gradient-start: #667eea;
+    --bg-gradient-end: #764ba2;
+    --bg-body: #f0f2f5;
+    --bg-container: #ffffff;
+    --bg-form: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-title: #667eea;
+    --border-color: #e9ecef;
+    --border-color-focus: #667eea;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --btn-primary-bg: #667eea;
+    --btn-primary-hover-bg: #5568d3;
+    --btn-primary-shadow: rgba(102, 126, 234, 0.4);
+}
+
+html[data-theme='dark'] {
+    --bg-gradient-start: #232526;
+    --bg-gradient-end: #414345;
+    --bg-body: #121212;
+    --bg-container: #1e1e1e;
+    --bg-form: #2a2a2a;
+    --bg-card: #2c2c2c;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --text-title: #8899ff;
+    --border-color: #444;
+    --border-color-focus: #8899ff;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --btn-primary-bg: #7788ee;
+    --btn-primary-hover-bg: #6677dd;
+    --btn-primary-shadow: rgba(120, 140, 255, 0.4);
+}
+
+/* --- General Styles --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text-primary);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* --- New Top Bar for Toggles --- */
+.top-bar {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.lang-switcher button, .theme-switcher button {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.lang-switcher button.active, .lang-switcher button:hover {
+    background: var(--btn-primary-bg);
+    color: white;
+    border-color: var(--btn-primary-bg);
+}
+.theme-switcher span {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.theme-switcher button {
+    font-size: 18px;
+    padding: 2px 8px;
+}
+
+/* --- Container and Title --- */
+.container {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    background: var(--bg-container);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--shadow-color);
+    padding: 30px;
+    transition: background-color 0.3s;
+}
+.main-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+h1 { color: var(--text-title); font-size: 32px; }
+.subtitle { color: var(--text-secondary); margin-bottom: 30px; font-size: 14px; }
+
+#apple-icon {
+    width: 32px;  
+    height: 32px; 
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+#apple-icon:hover {
+    transform: scale(1.2) rotate(20deg);
+}
+#apple-icon:hover {
+    transform: scale(1.2) rotate(20deg);
+}
+
+/* --- Forms and Inputs --- */
+.add-form { background: var(--bg-form); padding: 25px; border-radius: 12px; margin-bottom: 30px; }
+h2 { color: var(--text-primary); }
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; color: var(--text-primary); font-weight: 600; }
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: var(--bg-container);
+    color: var(--text-primary);
+    transition: border 0.3s;
+}
+input:focus, select:focus { outline: none; border-color: var(--border-color-focus); }
+
+/* --- Buttons --- */
+.btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s; }
+.btn-primary { background: var(--btn-primary-bg); color: white; }
+.btn-primary:hover { background: var(--btn-primary-hover-bg); transform: translateY(-2px); box-shadow: 0 5px 15px var(--btn-primary-shadow); }
+.btn-danger { background: #ff6b6b; color: white; padding: 8px 16px; }
+.btn-danger:hover { background: #ee5a52; }
+
+/* --- Domain List --- */
+.domain-list { display: grid; gap: 15px; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); }
+.domain-card { background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px; padding: 20px; transition: all 0.3s; }
+.domain-card:hover { border-color: var(--border-color-focus); box-shadow: 0 5px 20px var(--shadow-color); }
+.domain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.domain-name { font-size: 18px; font-weight: 700; color: var(--text-title); }
+.domain-meta { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+.domain-type, .domain-ssl { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.type-file { background: #d4edda; color: #155724; }
+.type-php { background: #cce5ff; color: #004085; }
+.type-proxy { background: #fff3cd; color: #856404; }
+.ssl-none { background: #f8d7da; color: #721c24; }
+.ssl-lets_encrypt { background: #d1ecf1; color: #0c5460; }
+.ssl-custom { background: #e2e3e5; color: #383d41; }
+.ssl-self_signed { background: #fff3cd; color: #856404; }
+.domain-info { color: var(--text-secondary); font-size: 14px; margin: 5px 0; word-break: break-all; }
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text-secondary); }
+.conditional-fields { display: none; animation: slideIn 0.3s; }
+.conditional-fields.show { display: block; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+/* --- New Custom Tooltip Styles --- */
+.icon-container {
+    position: relative; /* 關鍵：讓提示框相對於此容器定位 */
+    display: flex;
+    align-items: center;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+
+    width: 240px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    transform: translateX(-50%); 
+    transition: opacity 0.3s ease;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* 位於提示框底部 */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.icon-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+html[data-theme='dark'] .tooltip-text {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+html[data-theme='dark'] .tooltip-text::after {
+    border-color: #f0f0f0 transparent transparent transparent;
+}
+
+/* static/style.css */
+
+/* --- New Checkbox Group Style --- */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: -5px; /* 微調間距 */
+}
+.checkbox-group input[type="checkbox"] {
+    width: auto; /* 覆蓋全域的 width: 100% */
+    height: 16px;
+    flex-shrink: 0;
+}
+.checkbox-group label {
+    margin-bottom: 0; /* 覆蓋 label 的預設 margin */
+    font-weight: normal; /* 文字不需要加粗 */
+    color: var(--text-secondary);
+}
+.domain-info b.insecure {
+    color: #e57373; /* A softer red */
+    font-weight: 600;
+}
+html[data-theme='dark'] .domain-info b.insecure {
+    color: #ff8a80;
+}

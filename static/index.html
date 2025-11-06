@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- 預設語言改為 en -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="pageTitle">Tiny Apple WebServer</title>
+    <link rel="icon" href="/static/app.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="lang-switcher">
+            <button id="lang-en">English</button>
+            <button id="lang-zh">中文</button>
+        </div>
+        <div class="theme-switcher">
+            <span data-translate-key="themeLabel">Theme:</span>
+            <button id="theme-toggle">🌓</button>
+        </div>
+    </header>
+<div class="container">
+    <div class="main-title">
+    <div class="icon-container">
+        <img src="/static/app.ico" id="apple-icon" alt="Apple Icon">
+        <span id="apple-tooltip" class="tooltip-text"></span>
+    </div>
+    <h1 data-translate-key="mainTitle">Tiny Apple WebServer</h1>
+</div>
+    <p class="subtitle" data-translate-key="subtitle">Easily manage your domain configurations.</p>
+
+    <div class="add-form">
+        <h2 data-translate-key="addNewDomainTitle">➕ Add New Domain</h2>
+        <form id="addForm">
+            <div class="form-group">
+                <label data-translate-key="domainLabel">🌐 Domain</label>
+                <input type="text" id="domain" placeholder="example.com" required>
+            </div>
+            <div class="form-group">
+                <label data-translate-key="typeLabel">⚙️ Type</label>
+                <select id="type" required onchange="updateFields()">
+                    <option value="" data-translate-key="selectTypeOption">-- Select Type --</option>
+                    <option value="file_server" data-translate-key="fileServerOption">📁 File Server (Static Files)</option>
+                    <option value="php" data-translate-key="phpServerOption">🐘 PHP Server</option>
+                    <option value="reverse_proxy" data-translate-key="reverseProxyOption">🔄 Reverse Proxy</option>
+                </select>
+            </div>
+
+            <div id="fileFields" class="conditional-fields"><div class="form-group"><label data-translate-key="rootDirLabel">📂 Root Directory</label><input type="text" id="root" placeholder="/var/www/html"></div></div>
+            <div id="phpFields" class="conditional-fields"><div class="form-group"><label data-translate-key="rootDirLabel">📂 Root Directory</label><input type="text" id="phpRoot" placeholder="/var/www/html"></div><div class="form-group"><label data-translate-key="phpSocketLabel">🐘 PHP-FPM Socket</label><input type="text" id="phpSocket" placeholder="/var/run/php/php8.2-fpm.sock"></div></div>
+            <div id="proxyFields" class="conditional-fields">
+                <div class="form-group">
+                    <label data-translate-key="proxyUrlLabel">🎯 Proxy Target URL</label>
+                    <input type="text" id="proxyUrl" placeholder="https://localhost:8443">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="proxyInsecure">
+                    <label for="proxyInsecure" data-translate-key="proxyInsecureLabel">Ignore self-signed SSL certificate on the target</label>
+                </div>
+            </div>
+			<div class="form-group">
+				<label data-translate-key="sslModeLabel">🔒 SSL Mode</label>
+				<select id="sslMode" onchange="updateFields()">
+					<option value="none" data-translate-key="sslNoneOption">No Certificate (HTTP Only)</option>
+					<option value="lets_encrypt" data-translate-key="sslLetsEncryptOption">Let's Encrypt (Auto)</option>
+					<option value="custom" data-translate-key="sslCustomOption">Use Custom Certificate Files</option>
+					<option value="self_signed" data-translate-key="sslSelfSignedOption">Self-Signed (for Dev)</option>
+				</select>
+			</div>
+	
+			<div id="customSslFields" class="conditional-fields">
+				<div class="form-group">
+					<label data-translate-key="sslCertPathLabel">📜 Certificate File Path (.crt/.pem)</label>
+					<input type="text" id="sslCertFile" placeholder="/path/to/your/certificate.pem">
+				</div>
+				<div class="form-group">
+					<label data-translate-key="sslKeyPathLabel">🔑 Private Key File Path (.key)</label>
+					<input type="text" id="sslKeyFile" placeholder="/path/to/your/private.key">
+				</div>
+			</div>
+
+            <button type="submit" class="btn btn-primary" data-translate-key="addDomainBtn">✨ Add Domain</button>
+        </form>
+    </div>
+
+    <h2 data-translate-key="configuredDomainsTitle">🌍 Configured Domains</h2>
+    <div id="domainList" class="domain-list"></div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
